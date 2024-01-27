@@ -1,0 +1,76 @@
+
+
+
+            Insert Code
+
+
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=grocerydb;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("insert into usertab(customerid,category,p1,p2,p3,category1,p4,p5,p6,vat,total) values(@customerid,@category,@p1,@p2,@p3,@category1,@p4,@p5,@p6,@vat,@total)", con);
+            cnn.Parameters.AddWithValue("@CustomerId", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@Category", comboBox1.Text);
+            cnn.Parameters.AddWithValue("@P1", textBox2.Text);
+            cnn.Parameters.AddWithValue("@P2", textBox3.Text);
+            cnn.Parameters.AddWithValue("@P3", textBox4.Text);
+            cnn.Parameters.AddWithValue("@Category1", comboBox2.Text);
+            cnn.Parameters.AddWithValue("@P4", textBox5.Text);
+            cnn.Parameters.AddWithValue("@P5", textBox6.Text);
+            cnn.Parameters.AddWithValue("@P6", textBox7.Text);
+            cnn.Parameters.AddWithValue("@Vat", textBox8.Text);
+            cnn.Parameters.AddWithValue("@Total", textBox9.Text);
+            cnn.ExecuteNonQuery();
+            con.Close();
+            BindData();
+
+
+
+
+            BindData Code
+
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=grocerydb;Integrated Security=True");
+
+            SqlCommand cnn = new SqlCommand("select * from usertab", con);
+
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            dataGridView1.DataSource = dt;
+
+
+
+
+            Delete Code
+
+
+            SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=grocerydb;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("delete usertab where customerid=@customerid", con);
+            cnn.Parameters.AddWithValue("@CustomerId", int.Parse(textBox1.Text));
+            
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Deleted");
+            BindData();
+
+
+
+
+           Clear Code
+
+
+
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox9.Text = "";
+
+
+           
